@@ -16,7 +16,7 @@ import './Home.css';
 
 function Home() {
   const scrollContainerRef = useRef(null);
-  const [scrollDirection, setScrollDirection] = useState('right'); // Initial direction
+  const [scrollDirection, setScrollDirection] = useState('right');
 
   const scrollLeft = () => {
     scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
@@ -33,7 +33,7 @@ function Home() {
       } else {
         scrollLeft();
       }
-    }, 2000); // 2 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [scrollDirection]);
@@ -44,7 +44,7 @@ function Home() {
     const handleScroll = () => {
       if (container.scrollLeft === 0) {
         setScrollDirection('right');
-      } else if (container.scrollLeft + container.clientWidth === container.scrollWidth) {
+      } else if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
         setScrollDirection('left');
       }
     };
@@ -53,7 +53,6 @@ function Home() {
 
     return () => container.removeEventListener('scroll', handleScroll);
   }, []);
-
   return (
     <div className="d-flex flex-column align-items-center p-3">
       
@@ -151,26 +150,8 @@ Hiring</h3>
     <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
     <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
     <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img1} alt="Image 1" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 2" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img1} alt="Image 1" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 2" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    {/* Duplicate images to create an infinite loop */}
-    <img src={img1} alt="Image 7" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 8" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img3} alt="Image 9" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img1} alt="Image 10" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img3} alt="Image 11" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-    <img src={img2} alt="Image 12" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+   
+
   </Link>
 </div>
 
