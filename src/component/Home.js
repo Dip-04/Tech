@@ -1,38 +1,59 @@
-import React, { useRef, useEffect } from 'react';
-import Ho from './home.png'
-import meb from './meb.png'
-import user from './user1.png'
-import le from './le.png'
-import us from './us.png'
-import lo from './lo.png'
-import fo from './fo.png'
-import so from './so.png'
-
-
-import img1 from './img1.png'
-import img2 from './img2.png'
-import img3 from './img3.png'
-import img4 from './image.png'
-
+import React, { useRef, useEffect, useState } from 'react';
+import Ho from './home.png';
+import meb from './meb.png';
+import user from './user1.png';
+import le from './le.png';
+import us from './us.png';
+import lo from './lo.png';
+import fo from './fo.png';
+import so from './so.png';
+import img1 from './img1.png';
+import img2 from './img2.png';
+import img3 from './img3.png';
+import img4 from './image.png';
 import { Link } from 'react-router-dom';
-import './Home.css'
+import './Home.css';
+
 function Home() {
   const scrollContainerRef = useRef(null);
+  const [scrollDirection, setScrollDirection] = useState('right'); // Initial direction
 
   const scrollLeft = () => {
-      scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
   };
 
   const scrollRight = () => {
-      scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+    scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      scrollRight();
+      if (scrollDirection === 'right') {
+        scrollRight();
+      } else {
+        scrollLeft();
+      }
     }, 2000); // 2 seconds
 
     return () => clearInterval(interval);
+  }, [scrollDirection]);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+
+    const handleScroll = () => {
+      if (container.scrollLeft === 0) {
+        setScrollDirection('right');
+      } else if (container.scrollLeft + container.clientWidth === container.scrollWidth) {
+        setScrollDirection('left');
+      }
+    };
+
+    container.addEventListener('scroll', handleScroll);
+
+    return () => container.removeEventListener('scroll', handleScroll);
   }, []);
+
   return (
     <div className="d-flex flex-column align-items-center p-3">
       
@@ -119,16 +140,40 @@ Hiring</h3>
               </button>
             </div>
           </div>
-          <div className="scroll-container" ref={scrollContainerRef}>
-            <Link to="/" className="lk mt-2" target="_blank">
-              <img src={img1} alt="Image 1" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-              <img src={img2} alt="Image 2" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-              <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-              <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-              <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-              <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
-            </Link>
-          </div>
+          <div
+  className="scroll-container"
+  ref={scrollContainerRef}
+  style={{ overflowX: 'hidden', display: 'flex', scrollBehavior: 'smooth' }}
+>
+  <Link to="/" className="lk mt-2" target="_blank">
+    <img src={img1} alt="Image 1" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 2" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img1} alt="Image 1" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 2" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img1} alt="Image 1" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 2" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 3" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img1} alt="Image 4" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 5" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 6" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    {/* Duplicate images to create an infinite loop */}
+    <img src={img1} alt="Image 7" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 8" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 9" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img1} alt="Image 10" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img3} alt="Image 11" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+    <img src={img2} alt="Image 12" className="img-fluid mb-2" style={{ width: '320px', height: '570px' }} />
+  </Link>
+</div>
+
         </div>
       </div>
 
